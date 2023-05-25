@@ -8,8 +8,8 @@
 int main(int argc, char *argv[])
 {
 	FILE *fp;
-	size_t getline (char **string, size_t *n, FILE *stream);
 	char *line = NULL, **arr;
+	size_t getline (char **string, size_t *n, FILE *stream);
 	size_t len = 0;
 	stack_t *stack = NULL;
 	unsigned int line_number;
@@ -30,9 +30,9 @@ int main(int argc, char *argv[])
 		if (line[length - 1] == '\n')
 			line[length - 1] = '\0';
 		/* array containing the opcode and data */
-		arr = token(line);
+		arr = tokenize(line);
 		/* Get opcode corresponding function */
-		f = get_func(arr[0]);
+		f = get_op_func(arr[0]);
 		if (f == NULL)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n",

@@ -1,12 +1,12 @@
 #include "monty.h"
 
 /**
-  * _pop - Removes the element at the top of the stack
+  * pop - Removes the element at the top of the stack
   * @stack: The stack whose top element is to be removed
   * @line_number: The line number of the opcode currently being executed
   */
 
-void _pop(stack_t **stack, unsigned int line_number)
+void pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
 

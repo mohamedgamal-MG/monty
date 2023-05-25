@@ -1,13 +1,13 @@
 #include "monty.h"
 
 /**
-  * token - Tokens a string to return an array of words
+  * tokenize - Tokenizes a string to return an array of words
   * @s: The string to be tokenized
   *
   * Return: An array of the words
   */
 
-char **token(char *s)
+char **tokenize(char *s)
 {
 	char *token;
 	int i = 0;

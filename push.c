@@ -6,7 +6,7 @@
   * @line_number: The line number of the opcode currently being executed
   */
 
-void _push(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node = malloc(sizeof(stack_t));
 	int i = 0;

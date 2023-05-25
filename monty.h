@@ -55,4 +55,9 @@ void _mod(stack_t **stack, unsigned int line_number);
 char **token(char *s);
 void free_stack(stack_t *stack);
 void (*get_func(char *s))(stack_t **head, unsigned int line_number);
+
+void err(int error_code, ...);
+void more_err(int error_code, ...);
+void string_err(int error_code, ...);
+
 #endif /* MONTY_H */

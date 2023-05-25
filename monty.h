@@ -62,4 +62,5 @@ int delete_node(stack_t **head, unsigned int index);
 void error_exit(stack_t **stack);
 int isnumber(char *str);
 size_t getline (char **string, size_t *n, FILE *stream);
+void free_stack(stack_t *stack);
 #endif

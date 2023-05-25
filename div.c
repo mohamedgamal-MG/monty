@@ -5,7 +5,7 @@
  * @stack: pointer to linked list stack
  * @line_number: number of line opcode occurs on
  */
-void div(stack_t **stack, unsigned int line_number)
+void _div_(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL || (*stack)->next == NULL)
 	{

@@ -6,37 +6,46 @@
  */
 void push(stack_t **stack, unsigned int line_number)
 {
+	char *n;
+	int value;
 	stack_t *new_node;
-	char *arg;
-	int push_arg;
-
-	push_arg = 0;
-	new_node = malloc(sizeof(stack_t));
-	if (!new_node)
+	int queue_mode = 0;
+	n = strtok(NULL, " \t\n");
+	
+	if (n == NULL || !isnumber(n))
 	{
-		fprintf(stderr, "Error: malloc failed");
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-
-	arg = strtok(NULL, "\n ");
-	if (isnumber(arg) == 1 && arg != NULL)
+	value = atoi(n);
+	new_node = malloc(sizeof(stack_t));
+	if (new_node == NULL)
 	{
-		push_arg = atoi(arg);
+		fprintf(stderr, "Error: malloc failed\n");
+		free_stack(*stack);
+		exit(EXIT_FAILURE);
+	}
+	new_node->n = value;
+	new_node->prev = NULL;
+	if (*stack != NULL)
+	{
+		new_node->next = *stack;
+		(*stack)->prev = new_node;
+	}
+	*stack = new_node;
+	if (queue_mode)
+	{
+		new_node->next = *stack;
+		if (*stack != NULL)
+			(*stack)->prev = new_node;
+		*stack = new_node;
 	}
 	else
 	{
-		fprintf(stderr, "L%d: usage: push integer\n",line_number);
-		exit(EXIT_FAILURE);
+		new_node->next = *stack;
+		if (*stack != NULL)
+			(*stack)->prev = new_node;
+		*stack = new_node;
 	}
-
-	if (sq_flag == 1)
-	{
-		add_node_end(stack, push_arg);
-	}
-
-	if (sq_flag == 0)
-	{
-		add_node(stack, push_arg);
-	}
-
 }
+

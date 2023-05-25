@@ -1,10 +1,10 @@
 #include "monty.h"
 /**
- * add - adds top of stack and second top of stack
- *
- * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
- */
+ * f_add - adds the top two elements of the stack.
+ * @head: stack head
+ * @counter: line_number
+ * Return: no return
+*/
 void add(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL || (*stack)->next == NULL)

@@ -6,8 +6,8 @@
   * @line_number: The line number of opcode currently being executed
   */
 
-void _nop(stack_t **stack, unsigned int line_num)
+void _nop(stack_t **stack, unsigned int line_number)
 {
 	(void) stack;
-	(void) line_num;
+	(void) line_number;
 }

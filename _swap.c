@@ -6,7 +6,7 @@
   * @line_number: Line number of opcode being executed
   */
 
-void _swap(stack_t **stack, unsigned int line_num)
+void _swap(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
 	int data;
@@ -14,7 +14,7 @@ void _swap(stack_t **stack, unsigned int line_num)
 	/* Make sure node conatins more than 1 element */
 	if (temp == NULL || temp->next == NULL)
 	{
-		fprintf(stderr, "L%d: can't swap, stack too short\n", line_num);
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	/* Swap the data in the nodes */

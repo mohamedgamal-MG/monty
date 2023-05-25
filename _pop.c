@@ -6,7 +6,7 @@
   * @line_number: The line number of the opcode currently being executed
   */
 
-void _pop(stack_t **stack, unsigned int line_num)
+void _pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
 
@@ -14,7 +14,7 @@ void _pop(stack_t **stack, unsigned int line_num)
 	if (*stack == NULL)
 	{
 		free_stack(*stack);
-		fprintf(stderr, "L%d: can't pop an empty stack", line_num);
+		fprintf(stderr, "L%d: can't pop an empty stack", line_number);
 		exit(EXIT_FAILURE);
 	}
 

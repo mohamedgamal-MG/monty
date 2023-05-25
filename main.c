@@ -12,8 +12,8 @@ int main(int argc, char *argv[])
 	char *line = NULL, **arr;
 	size_t len = 0;
 	stack_t *stack = NULL;
-	unsigned int line_num;
-	void (*f)(stack_t **stack, unsigned int line_num);
+	unsigned int line_number;
+	void (*f)(stack_t **stack, unsigned int line_number);
 	int length = 0;
 
 	if (argc != 2)
@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 	if (fp == NULL)
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]), exit(EXIT_FAILURE);
 	/* Read the file one line at a time */
-	line_num = 1;
+	line_number = 1;
 	while ((length = getline(&line, &len, fp)) != -1)
 	{
 		if (line[length - 1] == '\n')
@@ -36,15 +36,15 @@ int main(int argc, char *argv[])
 		if (f == NULL)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n",
-					line_num, arr[0]);
+					line_number, arr[0]);
 			exit(EXIT_FAILURE);
 		}
 		/* Store the data */
 		if (arr[1])
 			push_data = arr[1];
 		/* Execute Function */
-		f(&stack, line_num);
-		line_num++;
+		f(&stack, line_number);
+		line_number++;
 	}
 	free(line), free_stack(stack), fclose(fp);
 	return (0);

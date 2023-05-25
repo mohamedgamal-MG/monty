@@ -6,11 +6,11 @@
   * @line_number: The line number of the opcode being executed
   */
 
-void _pall(stack_t **stack, unsigned int line_num)
+void _pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
 	int counter = 0;
-	(void) line_num;
+	(void) line_number;
 
 	while (temp != NULL)
 	{

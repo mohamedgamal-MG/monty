@@ -7,7 +7,7 @@
   * Return: A pointer to the corresponding function
   */
 
-void (*get_func(char *s))(stack_t **head, unsigned int line_num)
+void (*get_func(char *s))(stack_t **head, unsigned int line_number)
 {
 	int i = 0;
 	instruction_t opcodes[] = {

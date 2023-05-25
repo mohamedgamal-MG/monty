@@ -6,7 +6,7 @@
   * @line_number: The line number of the opcode currently being executed
   */
 
-void _push(stack_t **stack, unsigned int line_num)
+void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node = malloc(sizeof(stack_t));
 	int i = 0;
@@ -16,7 +16,7 @@ void _push(stack_t **stack, unsigned int line_num)
 		if (isdigit(push_data[i]) == 0)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n",
-					line_num);
+					line_number);
 			exit(EXIT_FAILURE);
 		}
 	}

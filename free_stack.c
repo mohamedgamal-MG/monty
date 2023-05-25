@@ -1,22 +1,17 @@
 #include "monty.h"
-
 /**
- * free_stack - Frees all the nodes in a stack.
- * @stack: Pointer to the top of the stack.
- *
- * Description: This function frees all the nodes in a stack,
- * starting from the top of the stack and working its way down.
- * It releases the memory allocated for each node and updates the
- * pointers accordingly.
- */
-void free_stack(stack_t *stack)
+* free_stack - frees a doubly linked list
+* @head: head of the stack
+*/
+void free_stack(stack_t *head)
 {
-	stack_t *current = stack;
-	stack_t *next;
-	while (current != NULL)
+	stack_t *aux;
+
+	aux = head;
+	while (head)
 	{
-		next = current->next;
-		free(current);
-		current = next;
-}
+		aux = head->next;
+		free(head);
+		head = aux;
+	}
 }

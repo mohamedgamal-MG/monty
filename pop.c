@@ -1,51 +1,23 @@
-// #include "monty.h"
-
-// /**
-//  * _pop - delete item at top of stack
-//  * @stack: pointer to linked list stack
-//  * @line_number: number of line opcode occurs on
-//  */
-// void _pop(stack_t **stack, unsigned int line_number)
-// {
-// 	if (*stack == NULL)
-// 	{
-// 		fprintf(stderr,"L%d: can't pop an empty stack\n", line_number);
-// 		exit(EXIT_FAILURE);
-// 	}
-// 	delete_node(stack, 0);
-// }
-
-
-#include <stdio.h>
-#include <ctype.h>
-#include <stdlib.h>
-#include <string.h>
 #include "monty.h"
-
 /**
- * pop - pops the very top element of the stack
- * @stack: stack given by main in start.c
- * @line_cnt: line number for error messages
- *
- * Return: void
- */
-void pop(stack_t **stack, unsigned int line_cnt)
+ * f_pop - prints the top
+ * @head: stack head
+ * @counter: line_number
+ * Return: no return
+*/
+void f_pop(stack_t **head, unsigned int counter)
 {
-    stack_t *tmp = NULL;
+	stack_t *h;
 
-    // Checking if the stack is empty
-    if (!stack || !*stack)
-    {
-        fprintf(stderr, "L%u: can't pop an empty stack\n", line_cnt);
-        exit(EXIT_FAILURE);
-    }
-
-    tmp = (*stack)->next;
-    free(*stack);
-    *stack = tmp;
-
-    // Updating the previous pointer of the new top node
-    if (!*stack)
-        return; /* prevents errors cause next line might assign a NULL */
-    (*stack)->prev = NULL;
+	if (*head == NULL)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", counter);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*head);
+		exit(EXIT_FAILURE);
+	}
+	h = *head;
+	*head = h->next;
+	free(h);
 }

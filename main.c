@@ -11,9 +11,10 @@ int main(int argc, char *argv[])
 	char *content;
 	FILE *file;
 	size_t size = 0;
+	size_t getline (char **string, size_t *n, FILE *stream);
 	ssize_t read_line = 1;
-	stack_t *stack = NULL;
-	unsigned int counter = 0;
+	stack_t *head = NULL;
+	unsigned int line_number = 0;
 
 	if (argc != 2)
 	{
@@ -32,14 +33,14 @@ int main(int argc, char *argv[])
 		content = NULL;
 		read_line = getline(&content, &size, file);
 		bus.content = content;
-		counter++;
+		line_number++;
 		if (read_line > 0)
 		{
-			execute(content, &stack, counter, file);
+			execute(content, &head, line_number, file);
 		}
 		free(content);
 	}
-	free_stack(stack);
+	free_stack(head);
 	fclose(file);
 return (0);
 }

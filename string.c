@@ -55,23 +55,30 @@ void pstr(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 	}
 	putchar('\n');
 }
+
 /**
- * stack - sets sq_flag to stack
- * @stack: pointer to stack list
- * @line_number: line opcode occurs on
+ * set_mode - Sets the stack and queue modes.
+ * @stack: Double pointer to the top of the stack.
+ * @stack_mode_val: Value to set for stack mode
+ * (non-zero for enabled, 0 for disabled).
+ * @queue_mode_val: Value to set for queue mode
+ * (non-zero for enabled, 0 for disabled).
+ *
+ * Description: This function updates
+ * the values of the stack_mode and queue_mode
+ * variables based on the provided parameters.
+ * It allows enabling or disabling the
+ * stack mode and queue mode in a centralized and reusable way.
  */
-void stack(__attribute__ ((unused)) stack_t **stack,
-	    __attribute__ ((unused)) unsigned int line_number)
+void set_mode(stack_t **stack, int stack_mode_val, int queue_mode_val)
 {
-	sq_flag = 0;
-}
-/**
- * queue - sets sq_flag to queue
- * @stack: pointer to stack list
- * @line_number: line opcode occurs on
- */
-void queue(__attribute__ ((unused))stack_t **stack,
-	    __attribute__ ((unused))unsigned int line_number)
-{
-	sq_flag = 1;
+	int queue_mode = 0;
+	int stack_mode = 1;
+	(void)stack;
+
+	queue_mode += queue_mode_val;
+	stack_mode += stack_mode_val;
+
+	printf("queue_mode: %d\n", queue_mode);
+	printf("stack_mode: %d\n", stack_mode);
 }

@@ -1,39 +1,51 @@
 #include "monty.h"
 /**
- * main - Entry point of the Monty interpreter.
- * @argc: The number of command-line arguments.
- * @argv: Array of command-line arguments.
- *
- * Description: The main function reads the Monty byte code file,
- * executes the corresponding opcodes, and handles errors.
- * It creates and initializes the stack, reads each line of the file,
- * tokenizes the line to extract the opcode, and executes the opcode function.
- * If an unknown opcode is encountered or an error occurs,
- * an error message is printed and the program exits with EXIT_FAILURE.
- *
- * Return: EXIT_SUCCESS upon successful execution, EXIT_FAILURE otherwise.
- */
-
+  * main - The monty script interpreter
+  * @argc: Argument count
+  * @argv: Arguments array
+  * Return: 0 when succesful
+  */
 int main(int argc, char *argv[])
 {
 	FILE *fp;
+	size_t getline (char **string, size_t *n, FILE *stream);
+	char *line = NULL, **arr;
+	size_t len = 0;
+	stack_t *stack = NULL;
+	unsigned int line_num;
+	void (*f)(stack_t **stack, unsigned int line_num);
+	int length = 0;
 
 	if (argc != 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
+		fprintf(stderr, "USAGE: monty file\n"), exit(EXIT_FAILURE);
+	/* Open the file */
 	fp = fopen(argv[1], "r");
+	/* Confirm the file has opened succesfully */
 	if (fp == NULL)
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]), exit(EXIT_FAILURE);
+	/* Read the file one line at a time */
+	line_num = 1;
+	while ((length = getline(&line, &len, fp)) != -1)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		exit(EXIT_FAILURE);
+		if (line[length - 1] == '\n')
+			line[length - 1] = '\0';
+		/* array containing the opcode and data */
+		arr = token(line);
+		/* Get opcode corresponding function */
+		f = get_func(arr[0]);
+		if (f == NULL)
+		{
+			fprintf(stderr, "L%d: unknown instruction %s\n",
+					line_num, arr[0]);
+			exit(EXIT_FAILURE);
+		}
+		/* Store the data */
+		if (arr[1])
+			push_data = arr[1];
+		/* Execute Function */
+		f(&stack, line_num);
+		line_num++;
 	}
-	if (process_file(fp) == -1)
-	{
-		fclose(fp);
-		exit(EXIT_FAILURE);
-	}
-	fclose(fp);
-	return EXIT_SUCCESS;
+	free(line), free_stack(stack), fclose(fp);
+	return (0);
 }

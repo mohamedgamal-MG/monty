@@ -1,50 +1,47 @@
 #include "monty.h"
+
 /**
- * push - push int to a stack
- * @stack: linked lists for monty stack
- * @line_number: number of line opcode occurs on
- */
-void push(stack_t **stack, unsigned int line_number)
+  * push - Adds and element to the top of a stack
+  * @stack: Adress of the stack where the element is to be added
+  * @line_number: The line number of the opcode currently being executed
+  */
+
+void _push(stack_t **stack, unsigned int line_num)
 {
-	char *n;
-	int value;
-	stack_t *new_node;
-	int queue_mode = 0;
-	n = strtok(NULL, " \t\n");
-	
-	if (n == NULL || !isnumber(n))
+	stack_t *new_node = malloc(sizeof(stack_t));
+	int i = 0;
+
+	for (i = 0; push_data[i] != '\0'; i++)
 	{
-		fprintf(stderr, "L%u: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
+		if (isdigit(push_data[i]) == 0)
+		{
+			fprintf(stderr, "L%d: usage: push integer\n",
+					line_num);
+			exit(EXIT_FAILURE);
+		}
 	}
-	value = atoi(n);
-	new_node = malloc(sizeof(stack_t));
+
+
+
 	if (new_node == NULL)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
-		free_stack(*stack);
+		fprintf(stderr, "Error: malloc failed");
 		exit(EXIT_FAILURE);
 	}
-	new_node->n = value;
+	new_node->n = atoi(push_data);
 	new_node->prev = NULL;
-	if (*stack != NULL)
+	new_node->next = NULL;
+
+	/* In case head is an empty list */
+	if (*stack == NULL)
 	{
-		new_node->next = *stack;
-		(*stack)->prev = new_node;
-	}
-	*stack = new_node;
-	if (queue_mode)
-	{
-		new_node->next = *stack;
-		if (*stack != NULL)
-			(*stack)->prev = new_node;
 		*stack = new_node;
 	}
+	/* If head is not an empty list */
 	else
 	{
 		new_node->next = *stack;
-		if (*stack != NULL)
-			(*stack)->prev = new_node;
+		(*stack)->prev = new_node;
 		*stack = new_node;
 	}
 }

@@ -1,16 +1,24 @@
 #include "monty.h"
 
 /**
- * _pall - print all function
- * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
- */
-void _pall(stack_t **stack)
+  * pall - Function that prints all the values of the stack
+  * @stack: The adress of the stack to print
+  * @line_number: The line number of the opcode being executed
+  */
+
+void _pall(stack_t **stack, unsigned int line_num)
 {
-	stack_t *current = *stack;
-	while (current != NULL)
+	stack_t *temp = *stack;
+	int counter = 0;
+	(void) line_num;
+
+	while (temp != NULL)
 	{
-		printf("%d\n", current->n);
-		current = current->next;
+		printf("%d\n", temp->n);
+		counter++;
+		temp = temp->next;
 	}
+
+
+
 }

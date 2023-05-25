@@ -38,7 +38,7 @@ typedef void (*instruct_func)(stack_t **stack, unsigned int line_number);
 char *parse(char *line);
 instruct_func get_func(char *str);
 void read_file(char *filename, stack_t **stack);
-void _pall(stack_t **stack, unsigned int line_number);
+void _pall(stack_t **stack);
 void _swap(stack_t **stack, unsigned int line_number);
 void _nop(stack_t **stack, unsigned int line_number);
 void pchar(stack_t **stack, unsigned int line_number);
@@ -51,8 +51,8 @@ void _mul(stack_t **stack, unsigned int line_number);
 void _div(stack_t **stack, unsigned int line_number);
 void pstr(stack_t **stack, unsigned int line_number);
 void _mod(stack_t **stack, unsigned int line_number);
-void _rotl(stack_t **stack, unsigned int line_number);
-void _rotr(stack_t **stack, unsigned int line_number);
+void _rotl(stack_t **stack);
+void _rotr(stack_t **stack);
 void queue(stack_t **stack, unsigned int line_number);
 void stack(stack_t **stack, unsigned int line_number);
 stack_t *add_node_end(stack_t **head, const int n);
@@ -63,4 +63,11 @@ void error_exit(stack_t **stack);
 int isnumber(char *str);
 size_t getline (char **string, size_t *n, FILE *stream);
 void free_stack(stack_t *stack);
+
+int process_file(FILE *fp);
+int execute_opcode(const char *opcode, stack_t **stack,
+unsigned int line_number);
+void set_mode(stack_t **stack, int stack_mode_val, int queue_mode_val);
+
+#define MAX_LINE_LENGTH 1000
 #endif

@@ -1,13 +1,13 @@
 #include "monty.h"
 
 /**
- * _nop - literally does nothing
- * @stack: pointer to the top of the stack
- * @line_number: the index of the current line
- *
- */
-void _nop(__attribute__ ((unused))stack_t **stack,
-	  __attribute__ ((unused))unsigned int line_number)
+  * nop - Opcode that does nothing
+  * @stack: The adress of the stack
+  * @line_number: The line number of opcode currently being executed
+  */
+
+void _nop(stack_t **stack, unsigned int line_number)
 {
-	;
+	(void) stack;
+	(void) line_num;
 }

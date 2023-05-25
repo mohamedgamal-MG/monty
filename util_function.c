@@ -37,71 +37,51 @@ int isnumber(char *str)
 	}
 	return (1);
 }
-
 /**
  * _rotl - rotates the list left
  * @stack: pointer to the top of the stack
- * @line_number: the index of the current line
  *
  */
-void _rotl(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
+void _rotl(stack_t **stack)
 {
-	stack_t *temp;
-	int temp1, temp2;
-
-	if (*stack == NULL)
-		return;
-	temp = *stack;
-	while (temp->next)
-		temp = temp->next;
-	while (temp)
+	stack_t *first = *stack;
+	stack_t *second = (*stack)->next;
+	if (*stack != NULL && (*stack)->next != NULL)
 	{
-		if (!temp->next)
-		{
-			temp1 = temp->n;
-			temp->n = (*stack)->n;
-		}
-		else
-		{
-			temp2 = temp->n;
-			temp->n = temp1;
-			temp1 = temp2;
-		}
-		temp = temp->prev;
+		while (first->next != NULL)
+			first = first->next;
+
+		first->next = *stack;
+		(*stack)->prev = first;
+		*stack = second;
+		second->prev = NULL;
+		first->next->next = NULL;
 	}
 }
+
 /**
  * _rotr - rotates the list right
  * @stack: pointer to the top of the stack
- * @line_number: the index of the current line
  *
  */
-void _rotr(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
+void _rotr(stack_t **stack)
 {
-	stack_t *runner1, *runner2;
-	int temp1, temp2;
+	stack_t *last = *stack;
+	stack_t *second_last;
 
-	if (*stack == NULL)
-		return;
-
-	runner1 = *stack;
-	runner2 = *stack;
-	while (runner1->next)
-		runner1 = runner1->next;
-	while (runner2)
+	if (*stack != NULL && (*stack)->next != NULL)
 	{
-		if (runner2->prev == NULL)
-		{
-			temp1 = runner2->n;
-			runner2->n = runner1->n;
-		}
-		else
-		{
-			temp2 = runner2->n;
-			runner2->n = temp1;
-			temp1 = temp2;
-		}
-		runner2 = runner2->next;
+		while (last->next != NULL)
+			last = last->next;
 
+		second_last = last->prev;
+
+		last->prev = NULL;
+		last->next = *stack;
+		(*stack)->prev = last;
+		*stack = last;
+
+		if (second_last != NULL)
+			second_last->next = NULL;
 	}
 }
